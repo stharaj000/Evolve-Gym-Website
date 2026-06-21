@@ -188,7 +188,7 @@ const Home = () => {
             {/* Facilities */}
             <div className="flex justify-center flex-col items-center px-6 md:px-16 lg:px-20 py-12 md:py-20 bg-white">
                 <h1 className="text-3xl md:text-5xl font-extrabold mb-10 text-center">Facilities that we Provide</h1>
-                <ul className="list-none w-full flex flex-col md:flex-wrap md:flex-row gap-5 md:gap-8 lg:gap-10 md:max-h-[590px]">
+                <ul className="list-none w-full flex flex-col md:flex-col md:flex-wrap md:flex-row gap-5 md:gap-12 lg:gap-10 md:h-[590px]">
                     {facilities.map((item, i) => (
                         <li key={i} className="text-base md:text-lg text-[rgb(110,110,110)] font-bold flex items-center gap-4 md:gap-5">
                             <img src="/images/dumbell.svg" alt="" width="26px" />
