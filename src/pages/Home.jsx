@@ -165,7 +165,7 @@ const Home = () => {
     }
 
     return (
-        <div className="w-[98.96vw] min-h-screen bg-gray-900 absolute top-0 bg-cover h-screen" style={{ backgroundImage: 'url(/images/hero.jpg)' }}>
+        <div className="w-[98.95vw] min-h-screen bg-gray-900 absolute top-0 bg-cover h-screen" style={{ backgroundImage: 'url(/images/hero.jpg)' }}>
 
             {/* Hero Section */}
             <div ref={heroRef} className="heroSection flex flex-col justify-between" style={{ height: '100vh' }}>

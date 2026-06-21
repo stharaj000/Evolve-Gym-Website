@@ -7,15 +7,15 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<AboutUs />} />
-                <Route path="/contact" element={<ContactUs />} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-            </Routes>
-        </BrowserRouter>
+            <BrowserRouter>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<AboutUs />} />
+                    <Route path="/contact" element={<ContactUs />} />
+                    <Route path="/privacy" element={<PrivacyPolicy />} />
+                </Routes>
+            </BrowserRouter>
     )
 }
 

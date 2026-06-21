@@ -35,9 +35,9 @@ const AboutUs = () => {
     }, [])
 
     return (
-        <div>
+        <div className='overflow-x-hidden'>
             {/* Hero Banner */}
-            <section className="w-full absolute top-0 overflow-hidden" style={{ height: '550px' }}>
+            <section className="w-full absolute top-0  " style={{ height: '550px' }}>
                 <img src="https://powerlift.qodeinteractive.com/elementor/wp-content/uploads/2019/07/team-title-img.jpg"
                     alt="" className="w-full h-full object-cover object-center block" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white">
