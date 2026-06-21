@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
 
     const [panelOpen, setPanelOpen] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const location = useLocation()
 
     const openPanel = () => {
@@ -16,40 +17,54 @@ const Navbar = () => {
         document.body.style.overflow = ''
     }
 
+    const closeMobileMenu = () => {
+        setMobileMenuOpen(false)
+        document.body.style.overflow = ''
+    }
+
+    const openMobileMenu = () => {
+        setMobileMenuOpen(true)
+        document.body.style.overflow = 'hidden'
+    }
+
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === 'Escape') closePanel()
+            if (e.key === 'Escape') { closePanel(); closeMobileMenu() }
         }
         document.addEventListener('keydown', handleKeyDown)
         return () => document.removeEventListener('keydown', handleKeyDown)
     }, [])
 
+    // Close mobile menu on route change
+    useEffect(() => { closeMobileMenu() }, [location.pathname])
+
+    const navLinks = [
+        { to: '/',        label: 'HOME'           },
+        { to: '/about',   label: 'ABOUT US'       },
+        { to: '/contact', label: 'CONTACT US'     },
+        { to: '/privacy', label: 'PRIVACY POLICY' },
+    ]
+
     return (
         <>
             <nav className="w-full flex justify-between items-center sticky top-0 left-0 z-[100]">
+                {/* Logo */}
                 <div className="logo">
-                    <img src="/images/evolve.png" alt="Evolve Logo" height="140px" style={{ marginLeft: '40px', height: '140px' }} />
+                    <img
+                        src="/images/evolve.png"
+                        alt="Evolve Logo"
+                        className="h-[80px] md:h-[140px] ml-4 md:ml-[40px]"
+                    />
                 </div>
 
-                <ul className="flex text-white list-none gap-[110px] bg-black px-10 py-10 items-center text-sm">
-                    <li className="nav-link cursor-pointer">
-                        <Link to="/" className="text-white no-underline">HOME</Link>
-                        <hr className={location.pathname === '/' ? '!w-full !border-white' : ''} />
-                    </li>
-                    <li className="nav-link cursor-pointer">
-                        <Link to="/about" className="text-white no-underline">ABOUT US</Link>
-                        <hr className={location.pathname === '/about' ? '!w-full !border-white' : ''} />
-                    </li>
-                    <li className="nav-link cursor-pointer">
-                        <Link to="/contact" className="text-white no-underline">CONTACT US</Link>
-                        <hr className={location.pathname === '/contact' ? '!w-full !border-white' : ''} />
-                    </li>
-                    <li className="nav-link cursor-pointer">
-                        <Link to="/privacy" className="text-white no-underline">PRIVACY POLICY</Link>
-                        <hr className={location.pathname === '/privacy' ? '!w-full !border-white' : ''} />
-                    </li>
-
-                    {/* INFO hamburger */}
+                {/* Desktop nav links */}
+                <ul className="hidden lg:flex text-white list-none gap-[60px] xl:gap-[110px] bg-black px-6 xl:px-10 py-10 items-center text-sm">
+                    {navLinks.map(({ to, label }) => (
+                        <li key={to} className="nav-link cursor-pointer">
+                            <Link to={to} className="text-white no-underline">{label}</Link>
+                            <hr className={location.pathname === to ? '!w-full !border-white' : ''} />
+                        </li>
+                    ))}
                     <li
                         className="info-btn flex items-center gap-5 cursor-pointer text-white"
                         onClick={openPanel}
@@ -61,7 +76,55 @@ const Navbar = () => {
                         </div>
                     </li>
                 </ul>
+
+                {/* Mobile: hamburger */}
+                <div className="lg:hidden flex items-center gap-4 mr-4 bg-black px-4 py-3">
+                    <button
+                        className="text-white flex flex-col gap-[5px] cursor-pointer"
+                        onClick={openMobileMenu}
+                        aria-label="Open menu"
+                    >
+                        <span className="block w-6 h-[2px] bg-white transition-all"></span>
+                        <span className="block w-6 h-[2px] bg-white transition-all"></span>
+                        <span className="block w-6 h-[2px] bg-white transition-all"></span>
+                    </button>
+                </div>
             </nav>
+
+            {/* Mobile Menu Overlay */}
+            <div
+                className={`fixed inset-0 bg-black/70 z-[200] transition-opacity duration-300 lg:hidden ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                onClick={closeMobileMenu}
+            />
+
+            {/* Mobile Menu Panel */}
+            <div
+                className={`fixed top-0 right-0 h-full w-[75%] max-w-[320px] bg-black z-[201] flex flex-col pt-16 px-8 gap-8 transition-transform duration-500 lg:hidden ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            >
+                <button
+                    className="absolute top-5 right-5 text-white text-2xl cursor-pointer bg-transparent border-none"
+                    onClick={closeMobileMenu}
+                >✕</button>
+                <img src="/images/evolve.png" alt="Evolve" className="w-24 mb-4" />
+                <ul className="flex flex-col gap-6">
+                    {navLinks.map(({ to, label }) => (
+                        <li key={to} className="nav-link cursor-pointer">
+                            <Link to={to} className="text-white no-underline text-lg font-semibold tracking-widest">{label}</Link>
+                            <hr className={location.pathname === to ? '!w-full !border-white' : ''} />
+                        </li>
+                    ))}
+                    <li
+                        className="info-btn flex items-center gap-5 cursor-pointer text-white text-lg font-semibold tracking-widest"
+                        onClick={() => { closeMobileMenu(); openPanel() }}
+                    >
+                        INFO
+                        <div className="flex flex-col gap-[5px]">
+                            <div className="info-top"></div>
+                            <div className="info-bottom"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
             {/* Overlay */}
             <div
@@ -69,7 +132,7 @@ const Navbar = () => {
                 onClick={closePanel}
             ></div>
 
-            {/* Slide-in Panel */}
+            {/* Slide-in Panel — unchanged */}
             <div className={`ep-panel ${panelOpen ? 'ep-open' : ''}`} role="dialog" aria-modal="true" aria-label="About Evolve">
                 <span className="ep-watermark" aria-hidden="true">ABOUT</span>
 

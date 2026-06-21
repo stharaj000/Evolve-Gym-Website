@@ -42,7 +42,7 @@ const ContactUs = () => {
             </div>
 
             {/* Find Us Section */}
-            <section className="flex gap-8 px-16 py-16 bg-white">
+            <section className="md:flex gap-8 px-12 py-16 bg-white">
                 <div className="flex-1">
                     <h2 className="text-4xl font-bold my-8">FIND US HERE &amp; DROP BY</h2>
                     <p className="mb-4"><span className="font-bold">PHONE:</span> 8600511152, 8007083737, 8378899790</p>
@@ -53,7 +53,7 @@ const ContactUs = () => {
                 <div className="flex-1">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7063.391282522321!2d85.325575043003!3d27.72668205163426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19168de06f8b%3A0xcfa1995cfd8b4e8d!2sBaluwatar%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1779202592784!5m2!1sen!2snp"
-                        width="800" height="600" style={{ border: 0 }} allowFullScreen="" loading="lazy"
+                         className='md:w-[800px] md:h-[600px] w-full h-72' style={{ border: 0 }} allowFullScreen="" loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>

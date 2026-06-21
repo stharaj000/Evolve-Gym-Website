@@ -48,7 +48,7 @@
 }
 .ani-btn:hover #righthr {
   visibility: visible;
-  transform: scaleY(29);
+  transform: scaleY(22);
   transition-delay: 0s;
 }
 .ani-btn #lefthr {

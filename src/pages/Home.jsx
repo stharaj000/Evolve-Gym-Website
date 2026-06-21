@@ -100,18 +100,11 @@ const reviews = [
 
 const videoThumb = 'https://evolvefitnesspune.in/wp-content/uploads/sb-instagram-feed-images/603079025_18545024587041060_5274200943010137804_nlow.jpg'
 
-const PlayIcon = () => (
-    <svg style={{ color: 'rgba(255,255,255,1)' }} viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-        <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-    </svg>
-)
-
 const Home = () => {
 
     const [membershipOpen, setmembershipOpen] = useState(true)
     const [showBackTop, setshowBackTop] = useState(false)
 
-    // BMI state
     const [height, setheight] = useState('')
     const [weight, setweight] = useState('')
     const [age, setage] = useState('')
@@ -135,41 +128,30 @@ const Home = () => {
 
     const handleBmiSubmit = (e) => {
         e.preventDefault()
-
         const h = parseFloat(height)
         const w = parseFloat(weight)
         const a = parseFloat(age)
-
         const calcBMI = (w / Math.pow(h / 100, 2)).toFixed(1)
         const calcBMRMen = (10 * w) + (6.25 * h) - (5 * a) + 5
         const calcBMRWomen = (10 * w) + (6.25 * h) - (5 * a) - 161
-
         let bmiLabel = ''
         if (calcBMI < 18.5) bmiLabel = 'Under Weight!'
         else if (calcBMI >= 18.5 && calcBMI <= 24.9) bmiLabel = 'Healthy Weight!'
         else if (calcBMI >= 25.0 && calcBMI <= 29.9) bmiLabel = 'Over Weight!'
         else bmiLabel = 'Obesity!'
-
         const bmr = gender === 'Male' ? calcBMRMen : calcBMRWomen
-
-        const activityMap = {
-            'Little or No Exercise': 1.2,
-            'Light Exercise': 1.375,
-            'Moderate Exercise': 1.55,
-            'Heavy Exercise': 1.725,
-        }
+        const activityMap = { 'Little or No Exercise': 1.2, 'Light Exercise': 1.375, 'Moderate Exercise': 1.55, 'Heavy Exercise': 1.725 }
         const maintCal = bmr * (activityMap[activityLevel] || 1.2)
-
         setbmiResult({ bmiLabel, calcBMI, bmr: bmr.toFixed(0), maintCal: maintCal.toFixed(0), activityLevel })
         setshowBmiResult(true)
     }
 
     return (
-        <div className="w-[98.95vw] min-h-screen bg-gray-900 absolute top-0 bg-cover h-screen" style={{ backgroundImage: 'url(/images/hero.jpg)' }}>
+        <div className="w-full min-h-screen bg-gray-900 absolute top-0 bg-cover h-screen" style={{ backgroundImage: 'url(/images/hero.jpg)' }}>
 
             {/* Hero Section */}
             <div ref={heroRef} className="heroSection flex flex-col justify-between" style={{ height: '100vh' }}>
-                <div className="heroBoxContainer h-[90%] flex justify-center  items-center">
+                <div className="heroBoxContainer h-[90%] flex justify-center items-center">
                     <div className="leftBox h-full w-1/2" style={{ cursor: 'url(/images/leftChevron64.png), auto' }}></div>
                     <div className="rightBox h-full w-1/2" style={{ cursor: 'url(/images/rightChevron.png), auto' }}></div>
                 </div>
@@ -177,8 +159,8 @@ const Home = () => {
             </div>
 
             {/* CTA Section */}
-            <div className="flex h-[400px] justify-center items-center flex-col gap-5 bg-white">
-                <h2 className="w-1/2 text-center text-4xl font-bold">
+            <div className="flex min-h-[300px] md:h-[400px] justify-center items-center flex-col gap-5 bg-white px-6 py-12 text-center">
+                <h2 className="w-full md:w-1/2 text-2xl md:text-4xl font-bold">
                     Empowering You to Evolve into the Best Version of Yourself.
                 </h2>
                 <div className="ani-btn relative" style={{ height: '44px' }}>
@@ -195,21 +177,21 @@ const Home = () => {
             </div>
 
             {/* Gallery Grid */}
-            <div className="flex bg-white h-fit justify-center px-36 flex-wrap gap-10 py-10">
+            <div className="flex bg-white justify-center px-6 md:px-16 lg:px-36 flex-wrap gap-5 md:gap-10 py-10">
                 {galleryImages.map((img, i) => (
-                    <div key={i} className="w-[340px] h-[340px] bg-gray-300 overflow-hidden rounded-xl">
+                    <div key={i} className="w-[calc(50%-10px)] sm:w-[280px] md:w-[300px] lg:w-[340px] h-[200px] sm:h-[280px] md:h-[320px] lg:h-[340px] bg-gray-300 overflow-hidden rounded-xl">
                         <img src={img} alt="" className="w-full h-full object-cover transition-all duration-500 hover:scale-[1.08]" />
                     </div>
                 ))}
             </div>
 
             {/* Facilities */}
-            <div className="flex justify-center flex-col items-center px-20 py-20 bg-white">
-                <h1 className="text-5xl font-extrabold mb-10">Facilities that we Provide</h1>
-                <ul className="list-none flex gap-10 flex-col flex-wrap" style={{ height: '590px' }}>
+            <div className="flex justify-center flex-col items-center px-6 md:px-16 lg:px-20 py-12 md:py-20 bg-white">
+                <h1 className="text-3xl md:text-5xl font-extrabold mb-10 text-center">Facilities that we Provide</h1>
+                <ul className="list-none w-full flex flex-col md:flex-wrap md:flex-row gap-5 md:gap-8 lg:gap-10 md:max-h-[590px]">
                     {facilities.map((item, i) => (
-                        <li key={i} className="text-lg text-[rgb(110,110,110)] font-bold flex items-center gap-5">
-                            <img src="/images/dumbell.svg" alt="" width="30px" />
+                        <li key={i} className="text-base md:text-lg text-[rgb(110,110,110)] font-bold flex items-center gap-4 md:gap-5">
+                            <img src="/images/dumbell.svg" alt="" width="26px" />
                             {item}
                         </li>
                     ))}
@@ -217,20 +199,20 @@ const Home = () => {
             </div>
 
             {/* BMI + Membership */}
-            <div className="bg-white flex" style={{ padding: '100px 200px 100px 120px', justifyContent: 'space-between' }}>
+            <div className="bg-white flex flex-col lg:flex-row gap-12 px-6 md:px-16 lg:px-[120px] py-16 lg:py-[100px] justify-between">
 
                 {/* BMI Calculator */}
-                <div className="flex flex-col justify-center w-[50%]">
-                    <h1 className="text-5xl font-extrabold mb-10">FREE BMI</h1>
-                    <p className="text-xl text-[rgb(101,101,101)] mb-10">
+                <div className="flex flex-col justify-center w-full lg:w-[50%]">
+                    <h1 className="text-3xl md:text-5xl font-extrabold mb-8 md:mb-10">FREE BMI</h1>
+                    <p className="text-base md:text-xl text-[rgb(101,101,101)] mb-8 md:mb-10">
                         Our BMI Calculator: Quickly assess your body composition by entering your height and weight. Find out if your weight falls within a healthy range for your height.
                     </p>
 
-                    <form onSubmit={handleBmiSubmit} className="w-[500px]">
-                        <input value={height} onChange={(e) => setheight(e.target.value)} type="number" placeholder="Height / cm" className="w-[50%] h-[60px] mb-5 text-lg text-black border border-gray-300 mr-[14px]" style={{ padding: '10px' }} />
-                        <input value={weight} onChange={(e) => setweight(e.target.value)} type="number" placeholder="Weight / kg" className="w-[46%] h-[60px] mb-5 text-lg text-black border border-gray-300" style={{ padding: '10px' }} />
-                        <input value={age} onChange={(e) => setage(e.target.value)} type="text" placeholder="Age" className="w-[50%] h-[60px] mb-5 px-[10px] text-lg text-black border border-gray-300 mr-[14px]" style={{ padding: '10px' }} />
-                        <select value={gender} onChange={(e) => setgender(e.target.value)} className="w-[46%] h-[55px] text-lg text-black border border-gray-300" required>
+                    <form onSubmit={handleBmiSubmit} className="w-full max-w-[500px]">
+                        <input value={height} onChange={(e) => setheight(e.target.value)} type="number" placeholder="Height / cm" className="w-[48%] h-[60px] mb-5 text-lg text-black border border-gray-300 mr-[4%]" style={{ padding: '10px' }} />
+                        <input value={weight} onChange={(e) => setweight(e.target.value)} type="number" placeholder="Weight / kg" className="w-[48%] h-[60px] mb-5 text-lg text-black border border-gray-300" style={{ padding: '10px' }} />
+                        <input value={age} onChange={(e) => setage(e.target.value)} type="text" placeholder="Age" className="w-[48%] h-[60px] mb-5 px-[10px] text-lg text-black border border-gray-300 mr-[4%]" style={{ padding: '10px' }} />
+                        <select value={gender} onChange={(e) => setgender(e.target.value)} className="w-[48%] h-[55px] text-lg text-black border border-gray-300" required>
                             <option value="" disabled hidden>Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -255,58 +237,57 @@ const Home = () => {
                     </form>
 
                     {showBmiResult && bmiResult && (
-                        <div className="w-[800px] bg-[rgb(18,18,18)] mt-20 text-white flex justify-around items-center px-5" style={{ height: '120px' }}>
-                            <div className="flex items-center">
-                                <img width="60" src="/images/bmilx2.png" alt="" />
-                                <h3 className="text-2xl">{bmiResult.bmiLabel}</h3>
+                        <div className="w-full max-w-[800px] bg-[rgb(18,18,18)] mt-12 md:mt-20 text-white flex flex-col sm:flex-row justify-around items-start sm:items-center px-5 py-6 gap-4">
+                            <div className="flex items-center gap-3">
+                                <img width="50" src="/images/bmilx2.png" alt="" />
+                                <h3 className="text-xl md:text-2xl">{bmiResult.bmiLabel}</h3>
                             </div>
-                            <div className="flex flex-col gap-3">
-                                <p className="text-base">Your BMI is: {bmiResult.calcBMI} kg/m²</p>
-                                <p className="text-base">Your BMR is: {bmiResult.bmr} Kcal/day.</p>
-                                <p className="text-base">Your Maintainance Calorie with {bmiResult.activityLevel} is: {bmiResult.maintCal}</p>
+                            <div className="flex flex-col gap-2">
+                                <p className="text-sm md:text-base">Your BMI is: {bmiResult.calcBMI} kg/m²</p>
+                                <p className="text-sm md:text-base">Your BMR is: {bmiResult.bmr} Kcal/day.</p>
+                                <p className="text-sm md:text-base">Maintainance Cal ({bmiResult.activityLevel}): {bmiResult.maintCal}</p>
                             </div>
-                            <h3 className="text-2xl cursor-pointer" onClick={() => setshowBmiResult(false)}>x</h3>
+                            <h3 className="text-2xl cursor-pointer self-start sm:self-auto" onClick={() => setshowBmiResult(false)}>x</h3>
                         </div>
                     )}
                 </div>
 
                 {/* Membership */}
-                <div className="w-[30%]">
+                <div className="w-full lg:w-[30%]">
                     <h2
-                        className="text-3xl font-extrabold mb-10 bg-[rgb(236,236,236)] px-5 flex justify-center gap-10 transition-all cursor-pointer"
-                        style={{ width: '400px', textAlign: 'center', padding: '20px' }}
+                        className="text-2xl md:text-3xl font-extrabold mb-8 md:mb-10 bg-[rgb(236,236,236)] flex justify-between gap-4 transition-all cursor-pointer px-5 py-5 w-full max-w-[400px]"
                         onClick={() => setmembershipOpen(!membershipOpen)}
                     >
                         MEMBERSHIP
                         {membershipOpen ? (
-                            <svg width="50" height="50" viewBox="0 0 52 11" fill="black" stroke="black" strokeWidth="1">
+                            <svg width="40" height="40" viewBox="0 0 52 11" fill="black" stroke="black" strokeWidth="1">
                                 <rect x="1" y="1" width="30" height="8"></rect>
                             </svg>
                         ) : (
-                            <img src="/images/add-symbol-svgrepo-com.svg" alt="" width="34" />
+                            <img src="/images/add-symbol-svgrepo-com.svg" alt="" width="28" />
                         )}
                     </h2>
                     <ul
-                        className="membership-ul list-none flex flex-col gap-8 px-5"
+                        className="membership-ul list-none flex flex-col gap-6 md:gap-8 px-5"
                         style={{ maxHeight: membershipOpen ? `${memberships.length * 50}px` : '1px' }}
                     >
                         {memberships.map((item, i) => (
-                            <li key={i} className="text-lg font-extrabold">{item}</li>
+                            <li key={i} className="text-base md:text-lg font-extrabold">{item}</li>
                         ))}
                     </ul>
                 </div>
             </div>
 
-            {/* Contact Section Cards */}
-            <div className="flex bg-red-600 h-[400px] justify-center">
+            {/* Program Cards */}
+            <div className="flex flex-col md:flex-row bg-red-600 min-h-[400px] md:h-[400px] justify-center">
                 {programCards.map((card, i) => (
-                    <div key={i} className={`hoverCard flex flex-col items-center justify-center w-full h-full text-white gap-10 overflow-hidden relative`}>
+                    <div key={i} className="hoverCard flex flex-col items-center justify-center w-full h-[400px] md:h-full text-white gap-6 md:gap-10 overflow-hidden relative">
                         <img src={card.img} alt="" className="absolute w-full h-full object-cover transition-all duration-500 hover:scale-[1.05]" style={{ filter: 'brightness(0.5)' }} />
                         <div className="h2Container">
                             <hr />
-                            <h2 className="text-[34px] font-extrabold relative z-10 w-[350px]">{card.title}</h2>
+                            <h2 className="text-2xl md:text-[34px] font-extrabold relative z-10 w-[280px] md:w-[350px]">{card.title}</h2>
                         </div>
-                        <p className="w-[450px] text-lg z-10 text-center relative">{card.desc}</p>
+                        <p className="w-[85%] md:w-[450px] text-base md:text-lg z-10 text-center relative">{card.desc}</p>
                         <div className="ani-btn relative z-10" style={{ height: '44px' }}>
                             <hr className="tophr" style={{ border: '1.5px solid white', backgroundColor: 'white' }} />
                             <hr id="righthr" style={{ border: '1.5px solid white', backgroundColor: 'white' }} />
@@ -321,9 +302,9 @@ const Home = () => {
             </div>
 
             {/* Feature Cards Row */}
-            <div className="flex h-[500px] w-full justify-center mt-[100px]">
+            <div className="flex flex-col md:flex-row w-full mt-[60px] md:mt-[100px]">
                 {featureCards.map((card, i) => (
-                    <div key={i} className={`flex flex-col items-center justify-center w-full text-white gap-10 overflow-hidden relative text-center ${i === 1 ? 'hoverCardWhite' : 'hoverCard'}`}>
+                    <div key={i} className={`flex flex-col items-center justify-center w-full h-[420px] md:h-[500px] text-white gap-6 md:gap-10 overflow-hidden relative text-center ${i === 1 ? 'hoverCardWhite' : 'hoverCard'}`}>
                         <img src={card.img} alt="" className="firstIMG absolute w-full h-full object-cover transition-all duration-500 hover:scale-[1.1]"
                             style={{ filter: card.dark ? 'brightness(0.5)' : 'contrast(0.4) opacity(1)' }} />
                         {i === 1 && <div className="absolute inset-0 bg-[rgba(194,188,188,0.26)] z-[1]"></div>}
@@ -332,9 +313,9 @@ const Home = () => {
                         </div>
                         <div className="h2Container z-10">
                             <hr />
-                            <h2 className={`text-[34px] font-extrabold relative z-10 w-[350px] ${i === 1 ? 'text-black' : ''}`}>{card.title}</h2>
+                            <h2 className={`text-2xl md:text-[34px] font-extrabold relative z-10 w-[280px] md:w-[350px] ${i === 1 ? 'text-black' : ''}`}>{card.title}</h2>
                         </div>
-                        <p className={`w-[420px] text-lg relative z-10 ${i === 1 ? 'text-black' : ''}`}>{card.desc}</p>
+                        <p className={`w-[85%] md:w-[420px] text-base md:text-lg relative z-10 ${i === 1 ? 'text-black' : ''}`}>{card.desc}</p>
                         <div className="ani-btn relative z-10" style={{ height: '44px' }}>
                             <hr className="tophr" style={{ border: `1.5px solid ${i === 1 ? 'black' : 'white'}`, backgroundColor: i === 1 ? 'black' : 'white' }} />
                             <hr id="righthr" style={{ border: `1.5px solid ${i === 1 ? 'black' : 'white'}`, backgroundColor: i === 1 ? 'black' : 'white' }} />
@@ -350,20 +331,20 @@ const Home = () => {
 
             {/* Group Workouts */}
             <div className="flex justify-center flex-col items-center gap-5">
-                <h1 className="text-5xl font-extrabold mt-20 mb-20">Group workouts</h1>
+                <h1 className="text-3xl md:text-5xl font-extrabold mt-12 md:mt-20 mb-8 md:mb-20">Group workouts</h1>
                 {groupWorkoutRows.map((row, ri) => (
-                    <div key={ri} className="flex w-full h-[350px] justify-center flex-wrap">
+                    <div key={ri} className="flex flex-col sm:flex-row w-full min-h-[250px] sm:h-[350px]">
                         {row.map((card, ci) => (
-                            <div key={ci} className={`flex flex-col items-center justify-center w-1/3 text-white gap-10 overflow-hidden relative text-center ${ci === 1 ? 'hoverCardWhite' : 'hoverCard'}`}>
+                            <div key={ci} className={`flex flex-col items-center justify-center w-full sm:w-1/3 h-[250px] sm:h-full text-white gap-6 md:gap-10 overflow-hidden relative text-center ${ci === 1 ? 'hoverCardWhite' : 'hoverCard'}`}>
                                 <img src={card.img} alt="" className="absolute w-full h-full object-cover transition-all duration-500 hover:scale-[1.1]"
                                     style={{ filter: card.dark ? 'brightness(0.5)' : 'contrast(0.4) opacity(1)' }} />
                                 {!card.dark && <div className="absolute inset-0 bg-[rgba(194,188,188,0.26)] z-[1]"></div>}
                                 <div className="svgBox w-full h-[60px] relative flex justify-center z-20">
-                                    <img src={card.icon} alt="" style={{ width: '80px', height: '80px', position: 'relative', opacity: 1, filter: 'none' }} />
+                                    <img src={card.icon} alt="" style={{ width: '60px', height: '60px', position: 'relative', opacity: 1, filter: 'none' }} />
                                 </div>
                                 <div className="h2Container z-10">
                                     <hr />
-                                    <h2 className={`text-[34px] relative z-10 w-[350px] font-extrabold ${!card.dark ? 'text-black' : 'text-white'}`}>{card.title}</h2>
+                                    <h2 className={`text-2xl md:text-[34px] relative z-10 w-[280px] md:w-[350px] font-extrabold ${!card.dark ? 'text-black' : 'text-white'}`}>{card.title}</h2>
                                 </div>
                             </div>
                         ))}
@@ -372,17 +353,17 @@ const Home = () => {
             </div>
 
             {/* Reviews */}
-            <div className="w-[60%] mx-[150px] my-[150px] flex flex-col gap-8">
-                <h1 className="text-5xl font-extrabold">REVIEWS FROM YOU</h1>
-                <div className="flex w-full overflow-x-scroll gap-[300px]" style={{ scrollbarWidth: 'none' }}>
+            <div className="w-full px-6 md:px-[100px] lg:px-[150px] my-16 md:my-[100px] flex flex-col gap-8">
+                <h1 className="text-3xl md:text-5xl font-extrabold">REVIEWS FROM YOU</h1>
+                <div className="flex w-full overflow-x-scroll gap-[60px] md:gap-[300px]" style={{ scrollbarWidth: 'none' }}>
                     {reviews.map((review, i) => (
-                        <div key={i} className="flex flex-col gap-[10px] m-2">
-                            <p className="italic text-gray-500 text-lg" style={{ width: '800px' }}>{review.text}</p>
-                            <h3 className="text-2xl">{review.name}</h3>
+                        <div key={i} className="flex flex-col gap-[10px] m-2 shrink-0">
+                            <p className="italic text-gray-500 text-base md:text-lg" style={{ width: 'min(800px, 80vw)' }}>{review.text}</p>
+                            <h3 className="text-xl md:text-2xl">{review.name}</h3>
                         </div>
                     ))}
                 </div>
-                <div className="w-full flex justify-center mt-[150px] ml-[120px]">
+                <div className="w-full flex justify-center md:justify-start mt-12 md:mt-[100px] md:ml-[120px]">
                     <div className="ani-btn relative" style={{ height: '44px' }}>
                         <hr className="tophr" style={{ border: '1.5px solid black', backgroundColor: 'black' }} />
                         <hr id="righthr" style={{ border: '1.5px solid black', backgroundColor: 'black' }} />
@@ -396,12 +377,12 @@ const Home = () => {
             </div>
 
             {/* Ask Anything Form */}
-            <div className="w-[80%] mx-auto flex flex-col gap-8">
-                <h1 className="text-5xl font-extrabold">FEEL FREE TO ASK ANYTHING</h1>
+            <div className="w-[90%] md:w-[80%] mx-auto flex flex-col gap-8 pb-16">
+                <h1 className="text-3xl md:text-5xl font-extrabold">FEEL FREE TO ASK ANYTHING</h1>
                 <form className="flex flex-col w-full gap-5">
-                    <div className="flex gap-5">
-                        <input type="text" placeholder="Your Full Name" className="w-1/2 h-[40px] px-3 text-base border border-gray-300" />
-                        <input type="text" placeholder="Contact Number" className="w-1/2 h-[40px] px-3 text-base border border-gray-300" />
+                    <div className="flex flex-col sm:flex-row gap-5">
+                        <input type="text" placeholder="Your Full Name" className="w-full sm:w-1/2 h-[40px] px-3 text-base border border-gray-300" />
+                        <input type="text" placeholder="Contact Number" className="w-full sm:w-1/2 h-[40px] px-3 text-base border border-gray-300" />
                     </div>
                     <input type="text" placeholder="Subject" className="h-[40px] px-3 text-base border border-gray-300" />
                     <textarea placeholder="Message" className="px-3 max-w-full text-base border border-gray-300" style={{ height: '200px', padding: '12px' }}></textarea>
@@ -426,45 +407,44 @@ const Home = () => {
                     </a>
                 </div>
 
-                <div className="flex flex-row w-full flex-wrap gap-5 mt-8">
+                {/* Instagram grid — responsive */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full mt-8">
                     {[...Array(8)].map((_, i) => (
-                        <div key={i} className="w-[290px] h-[290px] bg-red-600 text-white relative">
+                        <div key={i} className="aspect-square bg-red-600 text-white relative overflow-hidden">
                             <a href="#">
-                                <img src={videoThumb} alt="" className="w-[290px] h-[290px] object-cover absolute" style={{ filter: 'brightness(0.7)' }} />
-                                <svg style={{ color: 'rgba(255,255,255,1)', position: 'relative', zIndex: 10, width: '50px', top: '110px', left: '120px' }} viewBox="0 0 448 512">
+                                <img src={videoThumb} alt="" className="w-full h-full object-cover absolute" style={{ filter: 'brightness(0.7)' }} />
+                                <svg className="absolute z-10 w-8 md:w-12 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ color: 'rgba(255,255,255,1)' }} viewBox="0 0 448 512">
                                     <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
                                 </svg>
                             </a>
                         </div>
                     ))}
+                </div>
 
-                    <div className="w-full h-[40px] flex justify-center gap-4 mt-4">
-                        <button className="h-full px-3 text-sm bg-gray-500 text-white border-none rounded cursor-pointer transition-all hover:bg-gray-700">Load More</button>
-                        <button className="h-full px-3 text-sm bg-[#359dff] text-white border-none rounded cursor-pointer flex items-center gap-1 hover:bg-[#0272db] transition-all">
-                            <svg width="15" viewBox="0 0 448 512" fill="currentColor">
-                                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-                            </svg>
-                            Follow On Instagram
-                        </button>
-                    </div>
+                <div className="w-full flex justify-center gap-4 mt-6">
+                    <button className="h-10 px-4 text-sm bg-gray-500 text-white border-none rounded cursor-pointer transition-all hover:bg-gray-700">Load More</button>
+                    <button className="h-10 px-4 text-sm bg-[#359dff] text-white border-none rounded cursor-pointer flex items-center gap-1 hover:bg-[#0272db] transition-all">
+                        <svg width="14" viewBox="0 0 448 512" fill="currentColor">
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                        </svg>
+                        Follow On Instagram
+                    </button>
                 </div>
             </div>
 
             {/* Gym Walkthrough */}
-            <div className="mt-[50px] relative h-[600px]">
+            <div className="mt-[50px] relative h-[300px] md:h-[600px]">
                 <a href="https://www.youtube.com/watch?v=Lz4lfyDeyww&feature=youtu.be">
                     <img src="https://evolvefitnesspune.in/wp-content/uploads/2023/08/PHOTO-2023-04-03-21-40-31_1.webp" alt=""
                         className="w-full h-full object-cover absolute" style={{ filter: 'brightness(0.5)' }} />
-                    <svg style={{ color: 'rgba(255,255,255,1)', width: '60px', position: 'relative', zIndex: 10, top: '250px', left: '680px' }} viewBox="0 0 448 512">
+                    <svg className="absolute z-10 w-12 md:w-[60px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ color: 'rgba(255,255,255,1)' }} viewBox="0 0 448 512">
                         <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
                     </svg>
                 </a>
             </div>
 
-            {/* Footer */}
             <Footer />
 
-            {/* Back to Top */}
             <button
                 className={`back-top ${showBackTop ? 'show' : ''}`}
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

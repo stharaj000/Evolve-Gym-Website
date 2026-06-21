@@ -37,24 +37,24 @@ const AboutUs = () => {
     return (
         <div className='overflow-x-hidden'>
             {/* Hero Banner */}
-            <section className="w-full absolute top-0  " style={{ height: '550px' }}>
+            <section className="w-full absolute top-0" style={{ height: '550px' }}>
                 <img src="https://powerlift.qodeinteractive.com/elementor/wp-content/uploads/2019/07/team-title-img.jpg"
                     alt="" className="w-full h-full object-cover object-center block" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white px-4">
                     <p className="text-[11px] tracking-[3px] uppercase mb-[10px] opacity-90" style={{ fontFamily: "'Open Sans', sans-serif" }}>This page is</p>
-                    <h1 className="text-[52px] font-bold tracking-[3px] uppercase" style={{ fontFamily: "'Oswald', sans-serif" }}>About Us</h1>
+                    <h1 className="text-[36px] md:text-[52px] font-bold tracking-[3px] uppercase" style={{ fontFamily: "'Oswald', sans-serif" }}>About Us</h1>
                 </div>
             </section>
 
             {/* About Content */}
-            <section style={{ maxWidth: '1260px', margin: '290px 100px 100px', padding: '222px 40px 0px 40px' }}>
-                <p className="text-[48px] font-extrabold tracking-[1px] uppercase" style={{ fontFamily: "'Oswald', sans-serif", lineHeight: 1.1, marginBottom: '4px', color: 'black' }}>Hello We Are,</p>
+            <section className="px-6 md:px-[100px] pt-[500px] md:pt-[512px] pb-16">
+                <p className="text-3xl md:text-[48px] font-extrabold tracking-[1px] uppercase" style={{ fontFamily: "'Oswald', sans-serif", lineHeight: 1.1, marginBottom: '4px', color: 'black' }}>Hello We Are,</p>
 
                 <div className="my-4">
-                    <img src="https://evolvefitnesspune.in/wp-content/uploads/2023/08/EVOLVE-Logo-Black-PNG-1536x724-1-1-768x362.png" alt="" style={{ width: '300px', margin: '20px 0' }} />
+                    <img src="https://evolvefitnesspune.in/wp-content/uploads/2023/08/EVOLVE-Logo-Black-PNG-1536x724-1-1-768x362.png" alt="" style={{ width: 'min(300px, 80vw)', margin: '20px 0' }} />
                 </div>
 
-                <p className="text-xl leading-[1.8] text-[#656565] mb-8">
+                <p className="text-base md:text-xl leading-[1.8] text-[#656565] mb-8">
                     At Evolve Fitness Gym, we are dedicated to helping our members achieve their fitness goals and improve their overall well-being. Our state-of-the-art facility offers a wide range of equipment, group fitness classes, and personalized training programs to suit every fitness level and interest. Our experienced and certified trainers are committed to providing the support, guidance, and motivation you need to reach your full potential. Whether you're a beginner or a seasoned athlete, we'll work with you to create a customized fitness plan that's tailored to your specific needs and goals. We believe that fitness should be accessible to everyone and we strive to create a welcoming and inclusive environment for all of our members. So come and join us at Evolve Fitness Gym, where we will support and guide you as you evolve into the best version of yourself.
                 </p>
 
@@ -68,19 +68,19 @@ const AboutUs = () => {
             </section>
 
             {/* Facilities */}
-            <div className="flex justify-center flex-col items-center px-20 py-20 bg-white">
-                <h2 className="font-extrabold mb-12" style={{ fontSize: '54px', marginLeft: '170px', width: '100%' }}>Facilities that we Provide</h2>
-                <ul className="list-none flex gap-10 flex-col flex-wrap" style={{ height: '590px' }}>
+            <div className="flex justify-center flex-col items-center px-6 md:px-16 lg:px-20 py-12 md:py-20 bg-white">
+                <h2 className="text-3xl md:text-[54px] font-extrabold mb-10 md:mb-12 w-full text-left">Facilities that we Provide</h2>
+                <ul className="list-none w-full flex flex-col md:flex-wrap md:flex-row gap-5 md:gap-8 lg:gap-10 md:max-h-[590px]">
                     {facilities.map((item, i) => (
-                        <li key={i} className="text-lg text-[rgb(110,110,110)] font-bold flex items-center gap-5">
-                            <img src="/images/dumbell.svg" alt="" width="30px" />
+                        <li key={i} className="text-base md:text-lg text-[rgb(110,110,110)] font-bold flex items-center gap-4 md:gap-5">
+                            <img src="/images/dumbell.svg" alt="" width="26px" />
                             {item}
                         </li>
                     ))}
                 </ul>
             </div>
 
-            {/* Partners Marquee */}
+            {/* Partners Marquee — unchanged */}
             <section className="relative bg-[#111] overflow-hidden">
                 <div className="relative w-full overflow-hidden py-20" style={{
                     background: 'linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)), url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400&q=60") center/cover no-repeat'
@@ -129,7 +129,6 @@ const AboutUs = () => {
                     </div>
                 </div>
 
-                {/* Instagram bar */}
                 <div className="flex items-center justify-center gap-3 bg-[#111] py-[22px] text-white" style={{ fontFamily: "'Oswald', sans-serif", fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>
                     <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />

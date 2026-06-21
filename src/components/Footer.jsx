@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <div className="bg-black z-[100] w-full" style={{ height: '660px' }}>
-            <div className="flex gap-3 w-full mx-auto justify-center">
-                <div className="col1 w-full px-12 pt-28 flex flex-col gap-8 text-white" style={{ lineHeight: 1 }}>
+        <div className="bg-black z-[100] w-full">
+            {/* 4-column grid → 2-col on md → 1-col on sm */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full mx-auto">
+
+                {/* Col 1 — Brand */}
+                <div className="px-8 md:px-12 pt-16 md:pt-28 pb-10 flex flex-col gap-8 text-white" style={{ lineHeight: 1 }}>
                     <img width="100" src="https://evolvefitnesspune.in/wp-content/uploads/2023/08/EVOLVE-Logo-White-PNG-95x45-1.png" alt="Evolve Logo" />
-                    <h2 className="text-white" style={{ fontSize: '26px', fontWeight: 'bold' }}>EMPOWERING YOU TO EVOLVE TO THE BEST VERSION OF YOURSELF.</h2>
+                    <h2 className="text-white text-xl md:text-2xl font-bold">EMPOWERING YOU TO EVOLVE TO THE BEST VERSION OF YOURSELF.</h2>
                     <div className="flex flex-col gap-3">
-                        <h3 style={{ fontSize: '18px' }}>OUR SOCIALS</h3>
+                        <h3 className="text-lg">OUR SOCIALS</h3>
                         <div className="flex gap-5">
                             <svg width="22" viewBox="0 0 448 512" fill="white">
                                 <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
@@ -20,30 +23,34 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="col2 w-full px-12 pt-28 flex flex-col gap-8 text-white" style={{ lineHeight: 1.5 }}>
-                    <h3>CONTACT INFO</h3>
-                    <p>Level – 6, One Place – Wanowrie, Salunke Vihar Road, Pune-411040 evolvefitnessandwellness@gmail.com 86005 11152 , 8007083737, 8378899790</p>
+                {/* Col 2 — Contact Info */}
+                <div className="px-8 md:px-12 pt-10 lg:pt-28 pb-10 flex flex-col gap-8 text-white" style={{ lineHeight: 1.5 }}>
+                    <h3 className="text-lg font-semibold">CONTACT INFO</h3>
+                    <p className="text-sm md:text-base">Level – 6, One Place – Wanowrie, Salunke Vihar Road, Pune-411040<br />evolvefitnessandwellness@gmail.com<br />86005 11152, 8007083737, 8378899790</p>
                 </div>
 
-                <div className="col3 w-full px-12 pt-28 flex flex-col gap-8 text-white">
-                    <h3>Quick Links</h3>
-                    <ul className="list-none flex flex-col gap-3">
-                        <Link to="/" className="text-white no-underline"><li>Home</li></Link>
-                        <Link to="/" className="text-white no-underline"><li>Services</li></Link>
-                        <Link to="/about" className="text-white no-underline"><li>About Us</li></Link>
-                        <Link to="/" className="text-white no-underline"><li>Gallery</li></Link>
-                        <Link to="/contact" className="text-white no-underline"><li>Contact</li></Link>
+                {/* Col 3 — Quick Links */}
+                <div className="px-8 md:px-12 pt-10 lg:pt-28 pb-10 flex flex-col gap-8 text-white">
+                    <h3 className="text-lg font-semibold">Quick Links</h3>
+                    <ul className="list-none flex flex-col gap-3 text-sm md:text-base">
+                        <Link to="/" className="text-white no-underline hover:underline"><li>Home</li></Link>
+                        <Link to="/" className="text-white no-underline hover:underline"><li>Services</li></Link>
+                        <Link to="/about" className="text-white no-underline hover:underline"><li>About Us</li></Link>
+                        <Link to="/" className="text-white no-underline hover:underline"><li>Gallery</li></Link>
+                        <Link to="/contact" className="text-white no-underline hover:underline"><li>Contact</li></Link>
                     </ul>
                 </div>
 
-                <div className="col4 w-full px-12 pt-28 flex flex-col gap-8 text-white">
-                    <h3>WORKING HOURS</h3>
-                    <div className="flex flex-col gap-2">
+                {/* Col 4 — Working Hours + CTA */}
+                <div className="px-8 md:px-12 pt-10 lg:pt-28 pb-10 flex flex-col gap-8 text-white">
+                    <h3 className="text-lg font-semibold">WORKING HOURS</h3>
+                    <div className="flex flex-col gap-2 text-sm md:text-base">
                         <p>Monday – Saturday:</p>
+                        <p className="font-bold">06:00 AM – 10:00 PM</p>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 text-sm md:text-base">
                         <p>Every Sundays:</p>
-                        <p>11:00 AM – 04:00 PM</p>
+                        <p className="font-bold">11:00 AM – 04:00 PM</p>
                     </div>
                     <div className="ani-btn relative" style={{ height: '44px' }}>
                         <hr id="tophr" style={{ border: '1.5px solid black', backgroundColor: 'black' }} />
@@ -57,9 +64,10 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="w-full h-[140px] bg-[rgb(11,11,11)] text-white flex justify-center items-center flex-col gap-1">
-                <p>© 2023 Evolve Fitness</p>
-                <p>All Rights Reserved with Vibrant Fitness</p>
+            {/* Copyright bar */}
+            <div className="w-full bg-[rgb(11,11,11)] text-white flex justify-center items-center flex-col gap-1 py-8 mt-4">
+                <p className="text-sm">© 2023 Evolve Fitness</p>
+                <p className="text-sm">All Rights Reserved with Vibrant Fitness</p>
             </div>
         </div>
     )
